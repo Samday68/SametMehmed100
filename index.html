@@ -229,8 +229,8 @@
 
       const N = boxes.length - 1;
       for(let i=0;i<N;i++){
-        let a=parseFloat(boxes[i].innerText.replace(',','.'));
-        let b=parseFloat(boxes[i+1].innerText.replace(',','.'));
+        let a=parseFloat(boxes[i].innerText.replace(',', '.'));
+        let b=parseFloat(boxes[i+1].innerText.replace(',', '.'));
         let diff;
 
         if(currentGraph==='Z.Z'){
@@ -320,6 +320,20 @@
           combinedDigits.push(lastInt+','+firstDec); if(combinedDigits.length>20) combinedDigits.shift();
 
           updateWorm();
+
+          // Güncellenen fiyat kutusunu göster
+          const priceEl = document.getElementById('price');
+          priceEl.innerText = price.toFixed(2).replace('.', ',');
+          if(prices.length > 1){
+            const prev = prices[prices.length-2];
+            if(price > prev){
+              priceEl.style.background = 'blue';
+            } else if(price < prev){
+              priceEl.style.background = 'red';
+            } else {
+              priceEl.style.background = '#999';
+            }
+          }
         }
 
         // 🔹 senin mevcut render ve grafik kodun
